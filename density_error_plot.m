@@ -22,8 +22,7 @@ function density_error_plot(density_array, ideal_density_array, density_diff_arr
     % very narrowly spaced if they can be switched fast with a fast camera)
        
     % init figure
-    scr = get(0,'ScreenSize');
-    close all
+    scr = get(0,'ScreenSize');    
     fig = figure('Color', 'w', 'Name', 'Error Landscape of Ocular Media Density estimation');
     set(fig, 'Position', [0.1*scr(3) 0.4*scr(4) 0.8*scr(3) 0.5*scr(4)])
     

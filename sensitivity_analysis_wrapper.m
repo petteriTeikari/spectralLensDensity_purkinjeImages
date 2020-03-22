@@ -1,21 +1,26 @@
 function sensitivity_analysis_wrapper(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res,...
                                       light_sources_array, camera_sensitivity, camera_metadata, verbose)
 
-    % Brute-force grid search for all the combos in an inefficient nested
-    % for-loop :P
-    [density_array, ideal_density_array, density_diff_array, ideal_SPD_array, age_vector] = ...
+    %% Brute-force grid search for all the combos
+    [density_array, ideal_density_array, density_diff_array, ideal_SPD_array, ...
+        age_vector, lensDensity_template_LOG] = ...
             compute_density_error(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res, ...
                                   light_sources_array, camera_sensitivity, camera_metadata, verbose);
       
-    % Plot the error landscapes
+    %% Plot the error landscapes
     density_error_plot(density_array, ideal_density_array, density_diff_array, age_vector, ...
                        hbw_names, hbw_nms, peak_wavelengths, ...
                        lambda, light_sources_array, ideal_SPD_array, ...
                        camera_sensitivity, camera_metadata);
+                   
+    %% Plot the Lens Density
+    ages_to_use = [25 45 60 75 88];
+    plot_lens_density(ages_to_use, age_vector, lambda, lensDensity_template_LOG)
 
 end
 
-function [density_array, ideal_density_array, density_diff_array, ideal_SPD_array, age_vector] = ...
+function [density_array, ideal_density_array, density_diff_array, ideal_SPD_array, ...
+          age_vector, lensDensity_template_LOG] = ...
             compute_density_error(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res, ...
                                   light_sources_array, camera_sensitivity, camera_metadata, verbose)
              
@@ -47,6 +52,10 @@ function [density_array, ideal_density_array, density_diff_array, ideal_SPD_arra
     
     % if you want to later plot these
     ideal_SPD_array = zeros(wavelength_vector_length, no_of_halfBandwidths, no_of_peakWavelengths, no_of_ages_to_test);
+    
+    % if you want to visualize the different lens densities as function of
+    % age, we can output these as well
+    lensDensity_template_LOG = zeros(wavelength_vector_length, no_of_ages_to_test);
             
     for age_idx = 1 : no_of_ages_to_test
         for peak_nm = 1 : no_of_peakWavelengths
@@ -69,11 +78,11 @@ function [density_array, ideal_density_array, density_diff_array, ideal_SPD_arra
                 
                 % Create the lens density template based on the age
                 nm_resolution = lambda(2)-lambda(1);
-                [~, lensDensity_template_LOG, ~] = lensMediaWrapper(age, nm_resolution);
+                [~, lensDensity_template_LOG(:,age_idx), ~] = lensMediaWrapper(age, nm_resolution);
                 
                 % Wrapper for density density error calculation
                 [ideal_density, density, density_diff, ideal_SPD] = ...
-                calculate_relativeLensDensity(lambda, lensDensity_template_LOG, light_SPD, ...
+                calculate_relativeLensDensity(lambda, lensDensity_template_LOG(:,age_idx), light_SPD, ...
                                               camera_sensitivity, camera_metadata, ...
                                               peakNm, age, hbwNm, hbwName, verbose);
                                           
