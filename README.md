@@ -63,3 +63,12 @@ Thus, qualitatively it is very hard to capture the 2nd and 3rd Purkinje Images, 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeSchematics.png)
 
 ***(A)** Purkinje schematic modified from [Cavero et al. 2017](http://doi.org/10.1152/advan.00068.2017) showing the "impedance discontinuities" (if you are an electrical engineer) / refractive index discontinuities (optics) which cause the reflections that we call Purkinje(-Samson) images after Jan Evangelista Purkinje, **(B)** Locations of the Purkinje images assuming the Le Grand theoretical eye model and a distance of 500 mm between the object and the eye (x is taken from the corneal apex). The author also included some simulated optical layout on Zemax if you have a license and the skills for it ([Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)), **(C)** Purkinje images (left) from healthy eye (top) with a cataract (middle) and eye with a corneal opacification (bottom), and the corresponding 3rd Purkinje Image (P3) and 4th Purkinje image (P4) intensity profiles (right). The values of P3 and P4 contrasts are also given ([Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)).*
+
+#### Zemax model with proper optomechanical alignment?
+
+Might take some optimization to get nicely separated Purkinje Images (see below A for [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)'s analysis on the relation image size and object distance) with extra set of non-Purkinje reflection possibly occurring (see below B from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b))
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeImageSeparation.png)
+
+***(A)** [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192), **(B)** from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b)*
+
