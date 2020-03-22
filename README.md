@@ -22,9 +22,21 @@ See the light sources in [lightSource_wrapper.m](https://github.com/petteriTeika
 
 Run [densityModel_sensitivityAnalysis_v2020.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/master/densityModel_sensitivityAnalysis_v2020.m)
 
-### Just play with the plot
+### Just play with the error plot
 
 Run [density_error_plot.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/master/density_error_plot.m), and Matlab will import the pre-computed values from [plot_debug.mat](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/master/plot_debug.mat)
+
+#### Or just plot the ocular media density/transmittance
+
+Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/master/plot_lens_density.m) that will give you this:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/lensMedia.png)
+
+*You see that if you are interested in designing your measurement system that you want to cover the short wavelength range with smaller wavelength increments as most of the density changes happen there, and in general your measurement comes noisier there. You can just throw couple of wavelengths above ~530 nm to constrain your model fit?*
+
+If you are interested in using these to simulate how photoreception response (whatever your interest may be, e.g. circadian rhythms, pupillary light reflex, melatonin suppression, electroretinography, EEG, you name it), you can play with these artificial light sources for example (defined on 1 nm steps between 380 and 780 nm): https://github.com/petteriTeikari/lightLab/tree/master/database/LightSources/artificial. 
+
+You can see the the "effective correlated color temperature (CCT)" changes quite drastically for older lenses, and one could question of using very high CCT light sources in elderly care homes for example if nothing really goes through the ocular media? Assuming that the elderly still have their natural crystalline lenses, and have not gone through a cataract surgery with a new intraocular lens (IOL)?
 
 ## Literature references
 
