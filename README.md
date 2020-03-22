@@ -34,6 +34,12 @@ Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_
 
 *You see that if you are interested in designing your measurement system that you want to cover the short wavelength range with smaller wavelength increments as most of the density changes happen there, and in general your measurement comes noisier there. You can just throw couple of wavelengths above ~530 nm to constrain your model fit?*
 
+And if you would take out the crystalline lens from aged human eye (done during cataract surgery), the result would look something like this:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/lensYellowing.png)
+
+***(A)** Photograph of theLens Opacity Classification System (LOCS) III score chart used for assessing cataract severity [Chylack et al. 1993](http://doi.org/10.1001/archopht.1993.01090060119035), cited in [van den Berg 2018](https://doi.org/10.1111/opo.12426), **(B)**  Human crystalline lenses at different ages ([Cogan 1981](https://doi.org/10.1001/archopht.1981.03930010349032)), **(C)** Illustration how cataract not simply changes spectral transmittance, but also causes intraocular light scatter (from [Coastal Eye Care - Maine](https://www.facebook.com/CoastalEyeMaine/posts/june-is-cataract-awareness-month-a-cataract-is-the-cloudingyellowing-of-the-natu/1535847786551554/)
+
 If you are interested in using these to simulate how photoreception response (whatever your interest may be, e.g. circadian rhythms, pupillary light reflex, melatonin suppression, electroretinography, EEG, you name it), you can play with these artificial light sources for example (defined on 1 nm steps between 380 and 780 nm): https://github.com/petteriTeikari/lightLab/tree/master/database/LightSources/artificial. 
 
 You can see the the "effective correlated color temperature (CCT)" changes quite drastically for older lenses, and one could question of using very high CCT light sources in elderly care homes for example if nothing really goes through the ocular media? Assuming that the elderly still have their natural crystalline lenses, and have not gone through a cataract surgery with a new intraocular lens (IOL)?
@@ -72,3 +78,12 @@ Might take some optimization to get nicely separated Purkinje Images (see below 
 
 ***(A)** [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192), **(B)** from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b)*
 
+### Camera Modeling
+
+At the moment the camera's quantum efficiency is imported with no idea of the absolute irradiance / photon flux of the light source(s) used. You want your setup to comply to the standard [ISO 15004-2:2007 “Ophthalmic instruments -- Fundamental requirements and test methods - Part 2: Light hazard protection”](https://www.iso.org/standard/38952.html) to not cause hazard for the eyes of the subjects. This in turn means that you should calculate your absolute irradiances in any case, and then you could plug those values to your camera model and measure/estimate the effect of camera selection to your final ocular media density estimates?
+
+[Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192) serves again as nice reference how to calculate the limit values for continuous-wave instruments (opposed to pulsed light source with high peak values):
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/safetyLimits.png)
+
+_Table 3.2 of the ISO 15004-2:2007 “Limit values for continuous wave instruments”, Group 1 limit values for continuous wave instruments (Table 2, 5.4.1.4 of the ISO 15004-2:2007; Table 2, 5.4.1.6 of the ISO 15004-2:2007)_
