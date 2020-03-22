@@ -78,6 +78,7 @@ function [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitiv
        % best 16 bit dynamic range, high frame rates, long exposure times and extremely low readout noise."
        % https://www.pco.de/scientific-cameras/pcoedge-42/ 
        % with similar quantum efficiency curve as in IMX252
+       % for Python interfacing see e.g. https://github.com/AndrewGYork/tools/blob/master/pco.py
        
        % 2)
        % Some MIPI CSI option if you are looking to build an embedded
@@ -93,7 +94,12 @@ function [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitiv
        % Allied Vision: https://www.vision-systems.com/embedded/article/14072478/allied-vision-releases-free-mipi-driver-for-nvidia-jetson-tx2
        % Imaging Source: https://www.theimagingsource.com/campaigns/mipi-csi-2-fpd-link-iii-modules/
        
-       % 3) 
+       % 3)
+       % Santos et al. (2018) used 14-bit EMCCD from Andor's Luca camera family
+       % see e.g. https://andor.oxinst.com/learning/view/article/electron-multiplying-ccd-cameras
+       % https://andor.oxinst.com/?seriesid=59&Page=cameradetails
+
+       % 4) 
        % Low-cost Raspberry Pi -type camera with Sony IMX219?
        % Plug-in some Google Coral / Intel® Neural Compute Stick
        % https://khufkens.github.io/pi-camera-response-curves/
