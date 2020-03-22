@@ -34,9 +34,19 @@ Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_
 
 *You see that if you are interested in designing your measurement system that you want to cover the short wavelength range with smaller wavelength increments as most of the density changes happen there, and in general your measurement comes noisier there. You can just throw couple of wavelengths above ~530 nm to constrain your model fit?*
 
+And if you would take out the crystalline lens from aged human eye (done during cataract surgery), the result would look something like this:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/lensYellowing.png)
+
+***(A)** Photograph of theLens Opacity Classification System (LOCS) III score chart used for assessing cataract severity [Chylack et al. 1993](http://doi.org/10.1001/archopht.1993.01090060119035), cited in [van den Berg 2018](https://doi.org/10.1111/opo.12426), **(B)**  Human crystalline lenses at different ages ([Cogan 1981](https://doi.org/10.1001/archopht.1981.03930010349032)), **(C)** Illustration how cataract not simply changes spectral transmittance, but also causes intraocular light scatter (from [Coastal Eye Care - Maine](https://www.facebook.com/CoastalEyeMaine/posts/june-is-cataract-awareness-month-a-cataract-is-the-cloudingyellowing-of-the-natu/1535847786551554/)*
+
 If you are interested in using these to simulate how photoreception response (whatever your interest may be, e.g. circadian rhythms, pupillary light reflex, melatonin suppression, electroretinography, EEG, you name it), you can play with these artificial light sources for example (defined on 1 nm steps between 380 and 780 nm): https://github.com/petteriTeikari/lightLab/tree/master/database/LightSources/artificial. 
 
-You can see the the "effective correlated color temperature (CCT)" changes quite drastically for older lenses, and one could question of using very high CCT light sources in elderly care homes for example if nothing really goes through the ocular media? Assuming that the elderly still have their natural crystalline lenses, and have not gone through a cataract surgery with a new intraocular lens (IOL)?
+You can see the the "effective correlated color temperature (CCT)" changes quite drastically for older lenses, and one could question of using very high CCT light sources in elderly care homes for example if nothing really goes through the ocular media? Assuming that the elderly still have their natural crystalline lenses, and have not gone through a cataract surgery with a new intraocular lens (IOL)? 
+
+And with the increasing popularity of violet-pumped white LEDs (e.g. [SORAA Bluefree/Zeroblue/Healthy](https://www.soraa.com/soraa-pro/technology/zeroblue.php), [Nichia Optisolis](https://www.nichia.co.jp/en/product/led_sp_optisolis.html), [YUJILEDS VTC range](https://www.yujiintl.com/tunable-spectrum.html), [Seoul SunLike](http://www.seoulsemicon.com/en/technology); and the attempt to [avoid 460 nm pumping (Leslie Lyons)](https://www.ledsmagazine.com/leds-ssl-design/article/14039534/is-it-time-to-say-goodbye-to-bluepump-leds-magazine)), and interesting question would be how colors are perceived and what are the nonvisual effects of such light sources through dense ocular media in elderly?
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/violetPumpedLEDs_and_ocularMedia.png)
 
 ## Literature references
 
@@ -63,3 +73,39 @@ Thus, qualitatively it is very hard to capture the 2nd and 3rd Purkinje Images, 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeSchematics.png)
 
 ***(A)** Purkinje schematic modified from [Cavero et al. 2017](http://doi.org/10.1152/advan.00068.2017) showing the "impedance discontinuities" (if you are an electrical engineer) / refractive index discontinuities (optics) which cause the reflections that we call Purkinje(-Samson) images after Jan Evangelista Purkinje, **(B)** Locations of the Purkinje images assuming the Le Grand theoretical eye model and a distance of 500 mm between the object and the eye (x is taken from the corneal apex). The author also included some simulated optical layout on Zemax if you have a license and the skills for it ([Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)), **(C)** Purkinje images (left) from healthy eye (top) with a cataract (middle) and eye with a corneal opacification (bottom), and the corresponding 3rd Purkinje Image (P3) and 4th Purkinje image (P4) intensity profiles (right). The values of P3 and P4 contrasts are also given ([Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)).*
+
+#### Zemax model with proper optomechanical alignment?
+
+Might take some optimization to get nicely separated Purkinje Images (see below A for [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)'s analysis on the relation image size and object distance) with extra set of non-Purkinje reflection possibly occurring (see below B from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b))
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeImageSeparation.png)
+
+***(A)** [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192), **(B)** from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b)*
+
+### Camera Modeling
+
+At the moment the camera's quantum efficiency is imported with no idea of the absolute irradiance / photon flux of the light source(s) used. You want your setup to comply to the standard [ISO 15004-2:2007 “Ophthalmic instruments -- Fundamental requirements and test methods - Part 2: Light hazard protection”](https://www.iso.org/standard/38952.html) to not cause hazard for the eyes of the subjects. This in turn means that you should calculate your absolute irradiances in any case, and then you could plug those values to your camera model and measure/estimate the effect of camera selection to your final ocular media density estimates?
+
+[Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192) serves again as nice reference how to calculate the limit values for continuous-wave instruments (opposed to pulsed light source with high peak values):
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/safetyLimits.png)
+
+_Table 3.2 of the ISO 15004-2:2007 “Limit values for continuous wave instruments”, Group 1 limit values for continuous wave instruments (Table 2, 5.4.1.4 of the ISO 15004-2:2007; Table 2, 5.4.1.6 of the ISO 15004-2:2007)_
+
+### Limitations
+
+#### Lack of spatial map
+
+We really cannot get the crystalline lens density as a spatial map (as possible with SS-OCT with NIR Laser, see e.g.  [Alberto de Castro et al. 2018](https://doi.org/10.1167/iovs.17-23596); and EU's [Galahad Project](https://galahad-project.eu/) for developing low-cost supercontinuum light sources allowing visible light OCT, e.g. [Shu et al. 2019](https://dx.doi.org/10.21037%2Fqims.2019.05.01) and [Chong et al. 2018](https://doi.org/10.1364/BOE.9.001477)), thus the interest of big pharma is probably limited for using Purkinje images-based system to track the efficacy of their cataract-stopping/reversing medication. Likewise, some researchers working on Alzheimer's Disease might want to revisit the "biomarker hunt" with equatorial supranuclear cataracts below the lens capsule (see e.g. [Goldstein et al. 2003](https://doi.org/10.1016/S0140-6736(03)12981-9), [Michael et al. 2013](https://doi.org/10.1016/j.exer.2012.10.012); and reviewed by [Chang et al. 2014](https://doi.org/10.1016/j.jalz.2013.06.004). See below examples of SS-OCT scans:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/OCT_crystallineLens.png)
+
+***(A)** Optical coherence tomography images obtained from the CASIA2 anterior and posterior lens boundary are automatically drawn (orange dot lines), and their curvatures are calculated by the built-in software. Optic axis of lens (vertical orange dot lines) and vertex normal (vertical blue solid line) are automatically drawn and crystalline lens thickness is also calculated by the built-in software (vertical orange solid line) [Shoji et al. 2016](http://dx.doi.org/10.1136/bmjophth-2016-000058), **(B)**  Post-processing of volumetric SS-OCT data of the 26-yo healthy young subject. (a) Signal from the lens of the motion-corrected volumetric data is segmented. Anterior and posterior capsule, anterior and posterior cortex and the nucleus are segmented to enable determination of different parameters in those components. (b) Sagittal (side) projection (MIP) of the crystalline lens. (c) Examples of en-face projections of the lens capsule, nucleus and the cortex. Images were not corrected for light refraction [Grulkowski et al. 2018](https://doi.org/10.1364/BOE.9.003821), **(C)** . Posterior subcapsular cataract imaged with the SS-OCT in a 53-year-old (top row) and a 77-year-old (bottom row) pre-cataract surgery male patient. Central cross-section (A, E), lateral projection (B, F) of the maximum intensity, axial projection of the anterior (C, G), and the posterior (D, H) part of the crystalline lens. Although the anterior segment of the crystalline lens (C, G) seems normal, the observation of the posterior segment (D, H) reveals the shape and extent of the posterior subcapsular cataract. Scale bars: 1 mm [Alberto de Castro et al. 2018](https://doi.org/10.1167/iovs.17-23596).*
+
+#### Need for high dynamic range -> higher setup cost
+
+The "need for >8-bit dynamic range increased the cost of the camera needed, thus some computational approaches are needed for "multiframe-HDR" probably and use of some embedded deep learning-"compatible" platform such as NVIDIA Nano / NVIDIA Xavier NX (see [define_camera_spectral_sensitivity.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/37c7bdd0cd91462e6c85d4375b8289488a8eb66a/define_camera_spectral_sensitivity.m#L57) for some links to start your search)
+
+#### Intraocular light scatter as extra?
+
+Combination of this ocular media density assessment with the intraocular light measurement by [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)) (to replace [OCULUS C-Quant from 2005](https://www.oculus.de/en/products/visual-test-equipment/c-quant/highlights/)) would be interesting? And if you put effort in making the device as inexpensive and even open-source, it could be used in a lot of photoreception laboratories and low-resource settings routinely if the user experience (UX) is good (as the cost of SS-OCT "gold standard" is quite substantial for non-spectral purposes)
