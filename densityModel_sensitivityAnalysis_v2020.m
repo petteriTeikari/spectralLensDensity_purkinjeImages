@@ -5,7 +5,7 @@ function densityModel_sensitivityAnalysis_v2020()
         % outputs are in log, see inside lensMediaWrapper for linear (or change
         % the output as strucutre if that is easier for you)
         age = 25;
-        nm_resolution = 0.1; % sets the resolution for all the SPDs
+        nm_resolution = 1; % sets the resolution for all the SPDs
         [lambda, density, transmittance] = lensMediaWrapper(age, nm_resolution);
         
         disp(['1) Lens media template initialized with the spectral resolution fixed at ', ...
@@ -28,14 +28,14 @@ function densityModel_sensitivityAnalysis_v2020()
         % we match this to irradiance used by light_sources_array). TODO!
         % if you want to do these as photon fluxes
         model = 'FLIR-Blackfly-S-USB3';
-        camera_sensitivity = define_camera_spectral_sensitivity(model, lambda, false, false);
+        [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitivity(model, lambda, false, true);
     
     %% Sensitivity Analysis after initialization    
-        
+        ads
         verbose = false;
         age_res = 1; % [in years]
         sensitivity_analysis_wrapper(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res, ...
-                                      light_sources_array, camera_sensitivity, verbose)
+                                      light_sources_array, camera_sensitivity, camera_metadata, verbose)
         
 end
 
