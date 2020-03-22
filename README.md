@@ -48,6 +48,8 @@ And with the increasing popularity of violet-pumped white LEDs (e.g. [SORAA Blue
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/violetPumpedLEDs_and_ocularMedia.png)
 
+***(A)** Petteri Teikari (2012) PhD thesis discussion, **(B)** SORAA healthy marketing material with the violet-pumped white LED, **(C)** Nichia's alternative to SORAA Zeroblue line. Along with the advertised "circadian protection", the violet-pumped LEDs give broader light spectrum, thus better color rendering as well*
+
 ## Literature references
 
 * Purkinje imaging for crystalline lens density measurement (2018), https://www.slideshare.net/PetteriTeikariPhD/purkinje-imaging-for-crystalline-lens-density-measurement
