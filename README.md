@@ -54,13 +54,13 @@ And with the increasing popularity of violet-pumped white LEDs (e.g. [SORAA Blue
 
 ## Literature references
 
-* Purkinje imaging for crystalline lens density measurement (2018), https://www.slideshare.net/PetteriTeikariPhD/purkinje-imaging-for-crystalline-lens-density-measurement
-* Multispectral Purkinje Imaging (2018), https://www.slideshare.net/PetteriTeikariPhD/multispectral-purkinje-imaging
-* Novel system for measuring the scattering of the cornea and the lens (2018) by Pau Santos Vives (PhD thesis from UPC, Barcelona), https://upcommons.upc.edu/handle/2117/121192
-* System based on the contrast of Purkinje images to measure corneal and lens scattering by Pau Santos (2018), https://doi.org/10.1364/BOE.9.004907
-* Optical quality of the eye lens surfaces from roughness and diffusion measurements (1986) by Rafael Navarro et al. https://doi.org/10.1364/JOSAA.3.000228
+* **Purkinje imaging for crystalline lens density measurement** (2018), https://www.slideshare.net/PetteriTeikariPhD/purkinje-imaging-for-crystalline-lens-density-measurement
+* **Multispectral Purkinje Imaging** (2018), https://www.slideshare.net/PetteriTeikariPhD/multispectral-purkinje-imaging
+* **Novel system for measuring the scattering of the cornea and the lens** (2018) by Pau Santos Vives (PhD thesis from UPC, Barcelona), https://upcommons.upc.edu/handle/2117/121192
+* **System based on the contrast of Purkinje images to measure corneal and lens scattering** by Pau Santos (2018), https://doi.org/10.1364/BOE.9.004907
+* **Optical quality of the eye lens surfaces from roughness and diffusion measurements** (1986) by Rafael Navarro et al. https://doi.org/10.1364/JOSAA.3.000228
 
-## TODO!
+## TODO for more detailed simulation
 
 ### PSF of ocular media layers
 
@@ -112,7 +112,7 @@ The "need for >8-bit dynamic range increased the cost of the camera needed, thus
 
 #### Intraocular light scatter as extra?
 
-Combination of this ocular media density assessment with the intraocular light measurement by [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)) (to replace [OCULUS C-Quant from 2005](https://www.oculus.de/en/products/visual-test-equipment/c-quant/highlights/)) would be interesting? And if you put effort in making the device as inexpensive and even open-source, it could be used in a lot of photoreception laboratories and low-resource settings routinely if the user experience (UX) is good (as the cost of SS-OCT "gold standard" is quite substantial for non-spectral purposes).
+Combination of this ocular media density assessment with the intraocular light measurement by [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)) (to replace/augment [OCULUS C-Quant from 2005](https://www.oculus.de/en/products/visual-test-equipment/c-quant/highlights/) / [Visiometrics  HD Analyzer](https://www.visiometrics.com/hd-analyzer/) / [Oculus Pentacam Scheimpflug](https://www.aao.org/focalpointssnippetdetail.aspx?id=5b89b5e8-19d4-4e49-9edf-d791ce4497a1)) would be interesting? And if you put effort in making the device as inexpensive and even open-source, it could be used in a lot of photoreception laboratories and low-resource settings routinely if the user experience (UX) is good (as the cost of SS-OCT "gold standard" is quite substantial for non-spectral purposes).
 
 You should note that Purkinje Images only measure the backward scatter (reflected back to the image sensor), and not the forward scatter that would need some psychophysics method (e.g. [CATRA](https://doi.org/10.1145/2010324.1964942)). 
 
