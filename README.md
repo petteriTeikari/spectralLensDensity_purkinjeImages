@@ -45,3 +45,21 @@ You can see the the "effective correlated color temperature (CCT)" changes quite
 * Novel system for measuring the scattering of the cornea and the lens (2018) by Pau Santos Vives (PhD thesis from UPC, Barcelona), https://upcommons.upc.edu/handle/2117/121192
 * System based on the contrast of Purkinje images to measure corneal and lens scattering by Pau Santos (2018), https://doi.org/10.1364/BOE.9.004907
 * Optical quality of the eye lens surfaces from roughness and diffusion measurements (1986) by Rafael Navarro et al. https://doi.org/10.1364/JOSAA.3.000228
+
+## TODO!
+
+### PSF of ocular media layers
+
+It would be interesting to have some estimate of the **point-spread-function (PSF)** of the different surfaces, as remember that (from [Navarro et al. 1986](https://doi.org/10.1364/JOSAA.3.000228)):
+
+*The **first and the fourth Purkinje images** can be considered **specular** images, whereas the **second and the third are diffuse**. The first image is specular because, in spite of the roughness of the corneal epithelium, the reflection takes place in the surface of the tear layer that covers the anterior surface of the cornea.* 
+
+And from [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192):
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/pauSantos2018_fresnelEquations_purkinjeImages.png)
+
+Thus, qualitatively it is very hard to capture the 2nd and 3rd Purkinje Images, and when you remember where the reflections are coming (see below), realistically you can hope to capture the difference between the 1st and 4th Purkinje image (i.e. the ocular media density without knowing how much cornea and crystalline lens contribute). In practice this is all you want to know when wanting to know how to pre-filter your light stimulus to ensure that the retinal irradiance / photon flux is constant across your subjects (i.e. you want to study if there are [compensatory mechanisms with aging at "ocular"/retinal/(sub)cortical level](https://doi.org/10.1371/journal.pone.0085837) with age for non-image forming (NIF) photoreception)
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeSchematics.png)
+
+***(A)** Purkinje schematic modified from [Cavero et al. 2017](http://doi.org/10.1152/advan.00068.2017) showing the "impedance discontinuities" (if you are an electrical engineer) / refractive index discontinuities (optics) which cause the reflections that we call Purkinje(-Samson) images after Jan Evangelista Purkinje, **(B)** Locations of the Purkinje images assuming the Le Grand theoretical eye model and a distance of 500 mm between the object and the eye (x is taken from the corneal apex) ([Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)), **(C)** Purkinje images (left) from healthy eye (top) with a cataract (middle) and eye with a corneal opacification (bottom), and the corresponding 3rd Purkinje Image (P3) and 4th Purkinje image (P4) intensity profiles (right). The values of P3 and P4 contrasts are also given ([Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)).
