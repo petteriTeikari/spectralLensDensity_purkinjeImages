@@ -57,6 +57,7 @@ function plot_lens_density(ages_to_use, age_vector, lambda, lensDensity_template
         legend('boxoff')
         
     set(sp, 'XLim', peak_wavelengths)
+    set(p, 'LineWidth', 2)
     
     % style here
     set(sp, 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 8)
