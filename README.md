@@ -34,6 +34,8 @@ Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_
 
 *You see that if you are interested in designing your measurement system that you want to cover the short wavelength range with smaller wavelength increments as most of the density changes happen there, and in general your measurement comes noisier there. You can just throw couple of wavelengths above ~530 nm to constrain your model fit?*
 
+##### Yellowed ocular media in practice
+
 And if you would take out the crystalline lens from aged human eye (done during cataract surgery), the result would look something like this:
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/lensYellowing.png)
