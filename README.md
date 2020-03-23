@@ -80,11 +80,18 @@ Thus, qualitatively it is very hard to capture the 2nd and 3rd Purkinje Images, 
 
 #### Zemax model with proper optomechanical alignment?
 
-Might take some optimization to get nicely separated Purkinje Images (see below A for [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)'s analysis on the relation image size and object distance) with extra set of non-Purkinje reflection possibly occurring (see below B from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b))
+Might take some optimization to get nicely separated Purkinje Images (see below A for [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192)'s analysis on the relation image size and object distance) with extra set of non-Purkinje reflection possibly occurring (see below B from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b)). 
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeImageSeparation.png)
 
 ***(A)** [Pau Santos (2018)](https://upcommons.upc.edu/handle/2117/121192), **(B)** from [Mariana Quelhas Dias Rodrigues Almeida (2012)](https://www.semanticscholar.org/paper/Detection-of-purkinje-images-for-automatic-of-and-Almeida/9e9cf0d52edded3151898e21db6634d98a8b6f9b)*
+
+You can see nicely from the little animation from [Tabarnero and Artal 2014](https://doi.org/10.1371/journal.pone.0095764), how Purkinje Images move in relation to eye movements (Explaining why Purkinje images have been used for eye tracking purposes, see e.g. [Cornsweet and Crane 1973](https://doi.org/10.1364/JOSA.63.000921); and to aid the detection of fake eyes in biometric applications, see e.g. [Lee et al. 2008](https://doi.org/10.1117/1.2947582))
+
+![alt text](https://s3-eu-west-1.amazonaws.com/ppreviews-plos-725668748/1553946/preview.gif)
+*9° center to temporal (abducting) saccade. The tracking of the **1st Purkinje image** (corneal reflection) was marked with a **white** filled circle while tracking of the **4th Purkinje image** (lens posterior surface reflection) was marked in **green**. The pupil profile was characterized with a solid red line and its center marked in a **red dot**. Crystalline lens reflection (4th Purkinje image) wobbled for a fraction of a second after the saccadic movement. Some wobbling of the pupil center was also visible but to a less extent than the crystalline lens wobbling.*
+
+[Aguirre 2019](http://dx.doi.org/10.1038/s41598-019-45827-3) has also open-source 3D ray-tracing MATLAB code for modeling the entrance pupil of the human eye, available in [https://github.com/gkaguirrelab/gkaModelEye](https://github.com/gkaguirrelab/gkaModelEye), that could be used potentially.
 
 ### Camera Modeling
 
@@ -127,3 +134,17 @@ The intraocular light scatter measurement device could be useful in lighting des
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/glare.png)
 
 ***(A)** Intraocular light scatter in aged population is particularly disabling when driving (see e.g. [van den Berg et al. 2009](https://doi.org/10.3921/joptom.2009.112) and [Ortiz-Peregrina et al. 2020](https://doi.org/10.1371/journal.pone.0227892)), **(B)** It is not always trivial how to even evaluate glare, so you could have a look of the review of current state-of-the-art by [Wienold et al. 2019]() with the basic definitions of architectural lighting glare from [Professional Electricial (2018)](https://professional-electrician.com/technical/the-glare-essentials/), **(C)** Different devices and software for measurement; (above) [LDA LumiDisp Luminance Analyzer](http://www.lumidisp.eu/glare-measurement/) able to carry out [Unified Glare Index (UGR) evaluation](https://www.luxreview.com/2016/10/05/is-that-fitting-ugr19-compliant/), (left-bottom) Raspberry Pi-based luminance meter from [Kruisselbrink et al. 2017](https://doi.org/10.26607/ijsl.v19i1.76), (right-bottom) Veiling glare index measurement with a new yesy system from [Scopatz 2017](https://doi.org/10.1117/12.2262881).*
+
+#### Open-Source Hardware
+
+Practiacal low-cost open-source hardware (see e.g. [Pearce 2012](http://doi.org/10.1126/science.1228183), cited by [451 articles](https://scholar.google.com/scholar?um=1&ie=UTF-8&lr&cites=1682268685332266761)) implementation could be inspired for example by
+
+* Monocular focus estimation setup for Augmented and Virtual Reality (AR, VR) applications, using wearable eyetracker for mechanical stability ([Itoh et al. 2017](https://doi.org/10.1109/VR.2017.7892252), below A)
+
+* Hyperspectral iris imaging system (below B) by [Di Cecilia and Rovati 2020](https://doi.org/10.1063/1.5125575), who are using monochrome camera with a monochromator for tunable light spectrum, and who want to avoid Purkinje images on top of iris.
+
+* Smartphone-based imaging system (below C) of the corneal endothelium by [Toslak et al. 2016](http://dx.doi.org/10.1080/09500340.2016.1267815), that used the 2nd Purkinje image to image the endothelial cells (below D).
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeImaging_openSourceHardware.png)
+
+***(A)** Overview of our system. (a) A headset with an infrared eye camera and RGB scene camera; a focus chart on a linear rail used in the evaluation. (b) Simplified diagram of the light paths of Purkinje-Sanson (PS) images that occur on the surface of the eye. (c) A close-up eye image that shows the PS images and a typical output image of our detection method tuned for P3, **(B)** Picture of the GS3-U3-32S4M-C camera and illumination holder for bifurcated fibers from monochromator output, **(C)**  (a) Photographs of the slit lamp microscope (b) and custom-made smartphone adapter, **(D)**  Purkinje images I to IV (a). Images of corneal layers taken at 40× magnification (b) and 40× magnification of the biomicroscope with 6× digital magnification of the smartphone (c).*
