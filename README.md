@@ -89,6 +89,7 @@ Might take some optimization to get nicely separated Purkinje Images (see below 
 You can see nicely from the little animation from [Tabarnero and Artal 2014](https://doi.org/10.1371/journal.pone.0095764), how Purkinje Images move in relation to eye movements (Explaining why Purkinje images have been used for eye tracking purposes, see e.g. [Cornsweet and Crane 1973](https://doi.org/10.1364/JOSA.63.000921); and to aid the detection of fake eyes in biometric applications, see e.g. [Lee et al. 2008](https://doi.org/10.1117/1.2947582))
 
 ![alt text](https://s3-eu-west-1.amazonaws.com/ppreviews-plos-725668748/1553946/preview.gif)
+
 *9° center to temporal (abducting) saccade. The tracking of the **1st Purkinje image** (corneal reflection) was marked with a **white** filled circle while tracking of the **4th Purkinje image** (lens posterior surface reflection) was marked in **green**. The pupil profile was characterized with a solid red line and its center marked in a **red dot**. Crystalline lens reflection (4th Purkinje image) wobbled for a fraction of a second after the saccadic movement. Some wobbling of the pupil center was also visible but to a less extent than the crystalline lens wobbling.*
 
 [Aguirre 2019](http://dx.doi.org/10.1038/s41598-019-45827-3) has also open-source 3D ray-tracing MATLAB code for modeling the entrance pupil of the human eye, available in [https://github.com/gkaguirrelab/gkaModelEye](https://github.com/gkaguirrelab/gkaModelEye), that could be used potentially.
