@@ -150,7 +150,7 @@ Practiacal low-cost open-source hardware (see e.g. [Pearce 2012](http://doi.org/
 
 ***(A)** Overview of our system. (a) A headset with an infrared eye camera and RGB scene camera; a focus chart on a linear rail used in the evaluation. (b) Simplified diagram of the light paths of Purkinje-Sanson (PS) images that occur on the surface of the eye. (c) A close-up eye image that shows the PS images and a typical output image of our detection method tuned for P3, **(B)** Picture of the GS3-U3-32S4M-C camera and illumination holder for bifurcated fibers from monochromator output, **(C)**  (a) Photographs of the slit lamp microscope (b) and custom-made smartphone adapter, **(D)**  Purkinje images I to IV (a). Images of corneal layers taken at 40× magnification (b) and 40× magnification of the biomicroscope with 6× digital magnification of the smartphone (c).*
 
-Or take inspiration from "Arduino Ophthalmology" and visual neurosciences applications [Teikari et al. 2012](https://doi.org/10.1016/j.jneumeth.2012.09.012):
+Or take inspiration from "Arduino Ophthalmology" and visual neurosciences applications (e.g. [Teikari et al. 2012](https://doi.org/10.1016/j.jneumeth.2012.09.012)):
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/arduino_ophthalmology.png)
 
