@@ -149,3 +149,9 @@ Practiacal low-cost open-source hardware (see e.g. [Pearce 2012](http://doi.org/
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/purkinjeImaging_openSourceHardware.png)
 
 ***(A)** Overview of our system. (a) A headset with an infrared eye camera and RGB scene camera; a focus chart on a linear rail used in the evaluation. (b) Simplified diagram of the light paths of Purkinje-Sanson (PS) images that occur on the surface of the eye. (c) A close-up eye image that shows the PS images and a typical output image of our detection method tuned for P3, **(B)** Picture of the GS3-U3-32S4M-C camera and illumination holder for bifurcated fibers from monochromator output, **(C)**  (a) Photographs of the slit lamp microscope (b) and custom-made smartphone adapter, **(D)**  Purkinje images I to IV (a). Images of corneal layers taken at 40× magnification (b) and 40× magnification of the biomicroscope with 6× digital magnification of the smartphone (c).*
+
+Or take inspiration from "Arduino Ophthalmology" and visual neurosciences applications:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/arduino_ophthalmology.png)
+
+***(A)** Pupillary Light Reflex (PLR) study with Arduino-driven illumination by [González et al. 2017](https://doi.org/10.1109/CONIELECOMP.2017.7891817), **(B)** Arduino-based design for low-cost pattern electroretinography (ERG) from [McInturff and Buchser 2015](http://doi.org/10.1515/bmt-2015-0042) (see also [Pradhikari et al. 2019](https://doi.org/10.1016/j.visres.2019.08.007)'s system with Arduino for melanopsin-dependent white noise ERG), **(C)** Arduino used for trigger pulses, with its better real-time performance over the mini PC (NUC), in the low-cost Optical Coherence Tomography (OCT) system by [Kim et al. 2018](https://dx.doi.org/10.1364%2FBOE.9.001232)*
