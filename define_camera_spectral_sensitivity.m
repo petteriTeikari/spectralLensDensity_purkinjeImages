@@ -39,6 +39,7 @@ function [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitiv
     % "SENSOR REVIEW: MONO CAMERAS"
     % https://www.flir.com/globalassets/iis/guidebooks/2019-machine-vision-emva1288-sensor-review.pdf
     
+    %%
     if strcmp(model, 'FLIR-Blackfly-S-USB3')
         
         % This camera is using "Sony IMX252" CMOS sensor
@@ -127,12 +128,34 @@ function [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitiv
        % https://doi.org/10.1080/01431161.2019.1693075      
        
     end
+        
+    camera_sensitivity_E = convert_fromQuantaToEnergy(camera_sensitivity, lambda);
+    camera_sensitivity_E = camera_sensitivity_E ./ max(camera_sensitivity_E); % normalizes
+        
     
-    if output_in_photons
-        camera_sensitivity = convert_fromQuantaToEnergy(camera_sensitivity, lambda);
-        camera_sensitivity = camera_sensitivity ./ max(camera_sensitivity); % normalizes
+    if plot_ON
+        
+        scr = get(0,'ScreenSize');    
+        fig = figure('Color', 'w', 'Name', 'Camera Sensitivity');
+        set(fig, 'Position', [0.1*scr(3) 0.55*scr(4) 0.8*scr(3) 0.35*scr(4)])
+        
+        i = 0; rows = 1; cols = 2;
+        
+        i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, camera_sensitivity);
+        t(i) = title('FLIR-Blackfly-S-USB3_BFS-U3-32S4M-C [Sony_IMX252] Quantum Efficiency', 'Interpreter', 'none');
+        xL(i) = xlabel('Wavelength [nm]');
+        yL(i) = ylabel('Normalized Quantum Efficiency');    
+        
+        i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, camera_sensitivity_E);
+        t(i) = title('FLIR-Blackfly-S-USB3_BFS-U3-32S4M-C [Sony_IMX252] "Irradiance Sensitivity"', 'Interpreter', 'none');
+        xL(i) = xlabel('Wavelength [nm]');
+        yL(i) = ylabel('Normalized Spectral Sensitivity');    
+                
+        set(p, 'LineWidth', 2)
+        set(sp, 'XLim', [min(lambda), max(lambda)], 'YLim', [0 1.05])        
+        set(sp, 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 8)
+        set([t xL yL], 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 10)
     end
-    
     
 
 end
@@ -208,6 +231,7 @@ function [camera_sensitivity, camera_metadata] = interpolate_sensitivity_to_lamb
                            title(['NonNan, no of samples = ', num2str(length(lambda_raw))])
                 i = i + 1; sp(i) = subplot(rows, cols, i); plot(lambda, camera_sensitivity);
                            title(['Interpolated, no of samples = ', num2str(length(lambda))])
+                
                 
             end        
             
