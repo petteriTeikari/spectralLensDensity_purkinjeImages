@@ -108,9 +108,15 @@ _Table 3.2 of the ISO 15004-2:2007 “Limit values for continuous wave instrumen
 
 You can use the spectral sensitivity (defined either for photon flux or for irradiance) to increase the intensity of wavelengths for which your camera's sensor is less sensitive. For example our example Sony IMX is the least sensitive to 380 nm (within the range 380-700nm, _see below_)
 
-![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/cameraSensitivity_IMX252_Sony_FLIR_Blackfly.png)
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/cameraSensitivity_IMX252_Sony_FLIR_Blackfly.png)
 
 The correction is not that massive in the end (2.5x increase ~ 0.4 log unit increase) compared for example to the 10x (1 log unit) increase of 410 nm light stimulus by [Johnson et al. 1993](https://www.ncbi.nlm.nih.gov/pubmed/8302531) who had otherwise problems in detecting 4th Purkinje image at all.
+
+We can simulate (computed in [`estimate_illumination_compensation()`](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/40f097a7c9f73dc0b5fa61deaaf5621fa98e5b1a/sensitivity_analysis_wrapper.m#L247)the needed illumination compensation using the ocular media model by [van de Kraats and van Norren 2007](https://doi.org/10.1364/JOSAA.24.001842) which will give a estimate for nice pre-correction in order to have a better use of the dynamic range of the camera:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/illuminationCorrection_on_lensDensity.png)
+
+_Note that the compensation is slightly larger per used peak wavelength when half-bandwidth (`hbw`) is really narrow, and we can see that the 410 nm light indeed attenuates around 1 log unit for the 25 year old standard observer. To reproduce this, you can run [plot_compensated_lights.m)](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/plot_compensated_lights.m) which will load the pre-computed variables from `compensated_lights.mat`_
 
 ### Limitations
 
