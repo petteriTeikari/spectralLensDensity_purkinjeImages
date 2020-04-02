@@ -34,23 +34,6 @@ Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_
 
 *You see that if you are interested in designing your measurement system that you want to cover the short wavelength range with smaller wavelength increments as most of the density changes happen there, and in general your measurement comes noisier there. You can just throw couple of wavelengths above ~530 nm to constrain your model fit? The `offset` parameter in the [lensModel_vanDeKraats2007.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/082e4d34cef9532087c14e0387108ae38450156e/lensModel_vanDeKraats2007.m#L36) defines the spectrally neutral "global optical density", and default value of 0.111 was used for this in [lensMediaWrapper.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/082e4d34cef9532087c14e0387108ae38450156e/lensMediaWrapper.m#L20)*
 
-##### Yellowed ocular media in practice
-
-And if you would take out the crystalline lens from aged human eye (done during cataract surgery), the result would look something like this:
-
-![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/lensYellowing.png)
-
-***(A)** Photograph of theLens Opacity Classification System (LOCS) III score chart used for assessing cataract severity [Chylack et al. 1993](http://doi.org/10.1001/archopht.1993.01090060119035), cited in [van den Berg 2018](https://doi.org/10.1111/opo.12426), **(B)**  Human crystalline lenses at different ages ([Cogan 1981](https://doi.org/10.1001/archopht.1981.03930010349032)), **(C)** Illustration how cataract not simply changes spectral transmittance, but also causes intraocular light scatter (from [Coastal Eye Care - Maine](https://www.facebook.com/CoastalEyeMaine/posts/june-is-cataract-awareness-month-a-cataract-is-the-cloudingyellowing-of-the-natu/1535847786551554/))*
-
-If you are interested in using these to simulate how photoreception response (whatever your interest may be, e.g. circadian rhythms, pupillary light reflex, melatonin suppression, electroretinography, EEG, you name it), you can play with these artificial light sources tabulated in csv files defined on 1 nm steps between 380 and 780 nm): https://github.com/petteriTeikari/lightLab/tree/master/database/LightSources/artificial. 
-
-You can see the the "effective correlated color temperature (CCT)" changes quite drastically for older lenses, and one could question of using very high CCT light sources in elderly care homes for example if nothing really goes through the ocular media? Assuming that the elderly still have their natural crystalline lenses, and have not gone through a cataract surgery with a new intraocular lens (IOL)? 
-
-And with the increasing popularity of violet-pumped white LEDs (e.g. [SORAA Bluefree/Zeroblue/Healthy](https://www.soraa.com/soraa-pro/technology/zeroblue.php), [Nichia Optisolis](https://www.nichia.co.jp/en/product/led_sp_optisolis.html), [YUJILEDS VTC range](https://www.yujiintl.com/tunable-spectrum.html), [Seoul SunLike](http://www.seoulsemicon.com/en/technology); and the the trend [to reduce 460 nm pumped white LEDs? (Leslie Lyons)](https://www.ledsmagazine.com/leds-ssl-design/article/14039534/is-it-time-to-say-goodbye-to-bluepump-leds-magazine)), and interesting question would be how colors are perceived and what are the nonvisual effects of such light sources through dense ocular media in elderly?
-
-![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/violetPumpedLEDs_and_ocularMedia.png)
-
-***(A)** [Petteri Teikari (2012) PhD thesis](https://tel.archives-ouvertes.fr/file/index/docid/999326/filename/TH2012_Teikari_Petteri_ii.pdf) discussion, **(B)** [SORAA Bluefree/Zeroblue/Healthy](https://www.soraa.com/soraa-pro/technology/zeroblue.php) marketing material with the violet-pumped white LED, **(C)** Nichia's alternative ([Nichia Optisolis](https://www.nichia.co.jp/en/product/led_sp_optisolis.html)) to SORAA Zeroblue line. Along with the advertised "circadian protection", the violet-pumped LEDs give broader light spectrum, thus better color rendering as well*
 
 ## Literature references
 
