@@ -106,7 +106,7 @@ _Table 3.2 of the ISO 15004-2:2007 “Limit values for continuous wave instrumen
 
 #### Illumination compensation
 
-You can use the spectral sensitivity (defined either for photon flux or for irradiance) to increase the intensity of wavelengths for which your camera's sensor is less sensitive. For example our example Sony IMX is the least sensitive to 380 nm (within the range 380-700nm, _see below_)
+You can use the spectral sensitivity (defined either for photon flux or for irradiance) to increase the intensity of wavelengths for which your camera's sensor is less sensitive. For example, our example sensor Sony IMX252 is the least sensitive to 380 nm (within the range 380-700nm, _see below_)
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/cameraSensitivity_IMX252_Sony_FLIR_Blackfly.png)
 
