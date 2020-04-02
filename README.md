@@ -118,6 +118,14 @@ We can simulate (computed in [`estimate_illumination_compensation()`](https://gi
 
 _Note that the compensation is slightly larger per used peak wavelength when half-bandwidth (`hbw`) is really narrow, and we can see that the 410 nm light indeed attenuates around 1 log unit for the 25 year old standard observer. To reproduce this, you can run [plot_compensated_lights.m)](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/plot_compensated_lights.m) which will load the pre-computed variables from `compensated_lights.mat`_
 
+We can then combine the camera sensitivity -based compensation and lens density -based corrections with a standard interference filter `hbw` of 10 nm giving the following compensation curves:
+
+![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/illuminationCorrection_on_lensDensity_and_CameraSensitivity.png)
+
+_The 60 year old template lens should have as large as 2 log unit compensation if you would be using 400 nm peak wavelengths by simple transmittance attenuation analysis_
+
+You naturally have to take un-compensate this then in your analysis code, and use multiple exposures (HDR) to acquire both 1st and 4th Purkinje image in the elderly without intensity saturation as their intensity difference is so large.
+
 ### Limitations
 
 #### Lack of spatial map
