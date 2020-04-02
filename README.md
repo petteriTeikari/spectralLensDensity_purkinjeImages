@@ -118,7 +118,7 @@ We can simulate (computed in [`estimate_illumination_compensation()`](https://gi
 
 _Note that the compensation is slightly larger per used peak wavelength when half-bandwidth (`hbw`) is really narrow, and we can see that the 410 nm light indeed attenuates around 1 log unit for the 25 year old standard observer. To reproduce this, you can run [plot_compensated_lights.m)](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/plot_compensated_lights.m) which will load the pre-computed variables from `compensated_lights.mat`_
 
-We can then combine the camera sensitivity -based compensation and lens density -based corrections with a standard interference filter `hbw` of 10 nm giving the following compensation curves:
+We can then combine the camera sensitivity -based compensation and lens density -based corrections (both defined for irradiance, and not for photon flux, change the flag `output_in_photons` to `true` both for `lightSource_wrapper.m` and for `define_camera_spectral_sensitivity.m`) with a standard interference filter `hbw` of 10 nm giving the following compensation curves:
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/illuminationCorrection_on_lensDensity_and_CameraSensitivity.png)
 
