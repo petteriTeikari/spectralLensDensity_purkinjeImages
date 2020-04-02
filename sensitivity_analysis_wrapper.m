@@ -1,8 +1,9 @@
 function sensitivity_analysis_wrapper(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res,...
-                                      light_sources_array, camera_sensitivity, camera_metadata, verbose)
+                                      light_sources_array, camera_sensitivity, camera_metadata, illumination_camera, verbose)
 
     %% Brute-force grid search for all the combos
     [density_array, ideal_density_array, density_diff_array, ideal_SPD_array, ...
+        compensated_SPD_array, compensation_multipliers, ...
         age_vector, lensDensity_template_LOG] = ...
             compute_density_error(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res, ...
                                   light_sources_array, camera_sensitivity, camera_metadata, verbose);
@@ -16,10 +17,18 @@ function sensitivity_analysis_wrapper(lambda, hbw_names, hbw_nms, peak_wavelengt
     %% Plot the Lens Density
     ages_to_use = [25 45 60 75 88];
     plot_lens_density(ages_to_use, age_vector, lambda, lensDensity_template_LOG)
+    
+    %% Plot the light compensation
+    % use the same ages as above to avoid all-clogged-up graphs
+    hbw_to_pick = 10;
+    plot_compensated_lights(ages_to_use, age_vector, hbw_names, hbw_nms, hbw_to_pick, ...
+                            peak_wavelengths, lambda, illumination_camera, ...
+                            compensated_SPD_array, compensation_multipliers)
 
 end
 
 function [density_array, ideal_density_array, density_diff_array, ideal_SPD_array, ...
+          compensated_SPD_array, compensation_multipliers, ...
           age_vector, lensDensity_template_LOG] = ...
             compute_density_error(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res, ...
                                   light_sources_array, camera_sensitivity, camera_metadata, verbose)
@@ -52,6 +61,8 @@ function [density_array, ideal_density_array, density_diff_array, ideal_SPD_arra
     
     % if you want to later plot these
     ideal_SPD_array = zeros(wavelength_vector_length, no_of_halfBandwidths, no_of_peakWavelengths, no_of_ages_to_test);
+    compensated_SPD_array = zeros(wavelength_vector_length, no_of_halfBandwidths, no_of_peakWavelengths, no_of_ages_to_test);
+    compensation_multipliers = zeros(no_of_halfBandwidths, no_of_peakWavelengths, no_of_ages_to_test);
     
     % if you want to visualize the different lens densities as function of
     % age, we can output these as well
@@ -91,6 +102,13 @@ function [density_array, ideal_density_array, density_diff_array, ideal_SPD_arra
                 ideal_density_array(hbw, peak_nm, age_idx) = ideal_density;
                 density_diff_array(hbw, peak_nm, age_idx) = density_diff;
                 ideal_SPD_array(:, hbw, peak_nm, age_idx) = ideal_SPD;
+                
+                % Compute the illumination compensation for every
+                % light stimuli based on the age-parametrized template
+                [light_compensated, light_comp_multiplier] = estimate_illumination_compensation(lambda, lensDensity_template_LOG(:,age_idx), light_SPD);
+                % disp([age peakNm hbwNm light_comp_multiplier sum(light_SPD)]) % Debug command window / console
+                compensated_SPD_array(:, hbw, peak_nm, age_idx) = light_compensated;
+                compensation_multipliers(hbw, peak_nm, age_idx) = light_comp_multiplier;
                 
             end            
         end        
@@ -226,6 +244,33 @@ function density_scalar = compute_density_lowLevel(SPD, lensDensity_template_LOG
 
 end
 
+function [light_compensated, compensation_factor] = estimate_illumination_compensation(lambda, lensDensity_template_LOG, light_SPD)
+
+    % save compensated.mat
+    transmittance_linear = 10.^(1-lensDensity_template_LOG);
+    % plot(transmittance_linear)
+    
+    % we need to remove the offset now from the long wavelength end as it
+    % is not totally neutral over the ages, if we don't do this, you end up
+    % actually reducing the light needed
+    transmittance_linear = transmittance_linear / max(transmittance_linear(:));
+    
+    % this fix leads to another problem with all the wavelengths needing
+    % increase in intensity, we need to remember to normalize these later
+    % then, i.e. normalize per age 
+    
+    light_attn_vector = transmittance_linear .* light_SPD;
+    sum_light_SPD_in = sum(light_SPD); % should be 1 if no bugs before
+    % plot(light_attn_vector)
+    
+    %i.e. how much is the total light energy/photon flux reduced, NOT THE
+    %PEAK attenuation
+    light_attn = sum(light_attn_vector);
+    compensation_factor = sum_light_SPD_in / light_attn;    
+    light_compensated = light_SPD * compensation_factor;
+    % plot(light_compensated)
+    
+end
 
 function SPD_log = convert_LightSPD_to_LOG(SPD)
 

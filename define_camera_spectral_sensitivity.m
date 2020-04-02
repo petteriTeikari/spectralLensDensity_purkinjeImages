@@ -1,9 +1,9 @@
-function [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitivity(model, lambda, output_in_photons, plot_ON)
+function [camera_sensitivity, camera_metadata, illumination] = define_camera_spectral_sensitivity(model, lambda, output_in_photons, plot_ON)
 
     disp('3) Defining camera quantum efficiency and other useful metadata')
 
     if nargin == 2
-        output_in_photons = true;
+        output_in_photons = false;
         plot_ON = false;
     end
 
@@ -133,59 +133,67 @@ function [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitiv
     % irradiance
     camera_sensitivity_E = convert_fromQuantaToEnergy(camera_sensitivity, lambda);
     camera_sensitivity_E = camera_sensitivity_E ./ max(camera_sensitivity_E); % normalizes        
-    
-    if plot_ON
-        plot_camera_data(lambda, camera_sensitivity, camera_sensitivity_E)        
-    end
+        
+    [illumination, illumination_E] = plot_camera_data(lambda, camera_sensitivity, camera_sensitivity_E, plot_ON);
     
     if ~output_in_photons
+        disp('     ... output in irradiance')
         camera_sensitivity = camera_sensitivity_E;
+        illumination = illumination_E;
+    else
+        disp('     ... output quantum sensitivity / photon flux')
     end
 
 end
 
 
-function plot_camera_data(lambda, camera_sensitivity, camera_sensitivity_E)
+function [illumination, illumination_E] = plot_camera_data(lambda, camera_sensitivity, camera_sensitivity_E, plot_ON)
 
-    scr = get(0,'ScreenSize');    
-    fig1 = figure('Color', 'w', 'Name', 'Camera Sensitivity and Illumination correction');
-    set(fig1, 'Position', [0.1*scr(3) 0.25*scr(4) 0.8*scr(3) 0.70*scr(4)])
+    illumination = correct_camera_sensitivity_for_illumination(camera_sensitivity);
+    illumination_E = correct_camera_sensitivity_for_illumination(camera_sensitivity_E);
 
-        i = 0; rows = 2; cols = 2;
+    if plot_ON
+    
+        scr = get(0,'ScreenSize');    
+        fig1 = figure('Color', 'w', 'Name', 'Camera Sensitivity and Illumination correction');
+        set(fig1, 'Position', [0.1*scr(3) 0.25*scr(4) 0.8*scr(3) 0.70*scr(4)])
 
-        i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, camera_sensitivity);
-        t(i) = title('FLIR-Blackfly-S-USB3_BFS-U3-32S4M-C [Sony_IMX252] Quantum Efficiency', 'Interpreter', 'none');
-        xL(i) = xlabel('Wavelength [nm]');
-        yL(i) = ylabel('Normalized Quantum Efficiency');    
+            i = 0; rows = 2; cols = 2;
 
-        i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, camera_sensitivity_E, 'r');
-        t(i) = title('FLIR-Blackfly-S-USB3_BFS-U3-32S4M-C [Sony_IMX252] "Irradiance Sensitivity"', 'Interpreter', 'none');
-        xL(i) = xlabel('Wavelength [nm]');
-        yL(i) = ylabel('Normalized Spectral Sensitivity');    
-        
-    % fig2 = figure('Color', 'w', 'Name', 'Illumination Correction');
-    % set(fig2, 'Position', [0.15*scr(3) 0.5*scr(4) 0.85*scr(3) 0.35*scr(4)])    
-    % i = 0; rows = 1; cols = 2;
-        
-        illumination = correct_camera_sensitivity_for_illumination(camera_sensitivity);
-        i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, illumination);
-        t(i) = title('Illumination compensation for Quantum Efficiency', 'Interpreter', 'none');
-        xL(i) = xlabel('Wavelength [nm]');
-        yL(i) = ylabel('Normalized Illumination');    
-        
-        illumination_E = correct_camera_sensitivity_for_illumination(camera_sensitivity_E);
-        i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, illumination_E, 'r');
-        t(i) = title('Illumination compensation for "Irradiance Sensitivity"', 'Interpreter', 'none');
-        xL(i) = xlabel('Wavelength [nm]');
-        yL(i) = ylabel('Normalized Illumination');    
-        
-        sp
-        set(sp, 'XLim', [380 700])
-        set(p, 'LineWidth', 2)
-        set(sp(1:2), 'YLim', [0 1.05])        
-        set(sp(3:4), 'YLim', [0.95 2.5])        
-        set(sp, 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 8)
-        set([t xL yL], 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 10)
+            i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, camera_sensitivity);
+            t(i) = title('FLIR-Blackfly-S-USB3_BFS-U3-32S4M-C [Sony_IMX252] Quantum Efficiency', 'Interpreter', 'none');
+            xL(i) = xlabel('Wavelength [nm]');
+            yL(i) = ylabel('Normalized Quantum Efficiency');    
+
+            i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, camera_sensitivity_E, 'r');
+            t(i) = title('FLIR-Blackfly-S-USB3_BFS-U3-32S4M-C [Sony_IMX252] "Irradiance Sensitivity"', 'Interpreter', 'none');
+            xL(i) = xlabel('Wavelength [nm]');
+            yL(i) = ylabel('Normalized Spectral Sensitivity');    
+
+        % fig2 = figure('Color', 'w', 'Name', 'Illumination Correction');
+        % set(fig2, 'Position', [0.15*scr(3) 0.5*scr(4) 0.85*scr(3) 0.35*scr(4)])    
+        % i = 0; rows = 1; cols = 2;
+
+
+            i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, illumination);
+            t(i) = title('Illumination compensation for Quantum Efficiency', 'Interpreter', 'none');
+            xL(i) = xlabel('Wavelength [nm]');
+            yL(i) = ylabel('Normalized Illumination');    
+
+
+            i = i + 1; sp(i) = subplot(rows, cols, i); p(i) = plot(lambda, illumination_E, 'r');
+            t(i) = title('Illumination compensation for "Irradiance Sensitivity"', 'Interpreter', 'none');
+            xL(i) = xlabel('Wavelength [nm]');
+            yL(i) = ylabel('Normalized Illumination');    
+
+            set(sp, 'XLim', [380 700])
+            set(p, 'LineWidth', 2)
+            set(sp(1:2), 'YLim', [0 1.05])        
+            set(sp(3:4), 'YLim', [0.95 2.5])        
+            set(sp, 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 8)
+            set([t xL yL], 'FontName','NeueHaasGroteskDisp Pro', 'FontSize', 10)
+            
+    end
         
 
 end

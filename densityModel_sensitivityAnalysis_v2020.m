@@ -7,7 +7,7 @@ function densityModel_sensitivityAnalysis_v2020()
         % outputs are in log, see inside lensMediaWrapper for linear (or change
         % the output as strucutre if that is easier for you)
         age = 25;
-        nm_resolution = 0.1; % sets the resolution for all the SPDs
+        nm_resolution = 1; % sets the resolution for all the SPDs
         [lambda, density, transmittance] = lensMediaWrapper(age, nm_resolution);
         
         disp(['1) Lens media template initialized with the spectral resolution fixed at ', ...
@@ -19,7 +19,12 @@ function densityModel_sensitivityAnalysis_v2020()
         % peak_wavelengths = [385 390 405 415 430 445 460 480 505 530 560];
         
         % simulation looks prettier with continuous peaks
-        nm_safety = 100; % leads to estimation errors if you go too close to the "edge" with broad SPD
+        nm_safety = 70; % leads to estimation errors if you go too close to the "edge" with broad SPD
+        % TODO! for density error plot, I used 100 nm first as nm_safety,
+        % and 70 nm for the hbw-based illumination correction, you could
+        % harmonize and check that there are no weirdness going on around
+        % the wavelength extrema
+        
         peak_wavelengths = (lambda(1)+nm_safety : 1 : lambda(end)-nm_safety)'; % some round-off-error around edges        
         [hbw_names, hbw_nms, light_sources_array] = lightSource_wrapper(lambda, peak_wavelengths);
     
@@ -30,14 +35,14 @@ function densityModel_sensitivityAnalysis_v2020()
         % we match this to irradiance used by light_sources_array). TODO!
         % if you want to do these as photon fluxes
         model = 'FLIR-Blackfly-S-USB3';
-        [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitivity(model, lambda, false, true);
-        ad
+        [camera_sensitivity, camera_metadata, illumination_camera] = define_camera_spectral_sensitivity(model, lambda, false, false);
+     
         
     %% Sensitivity Analysis after initialization        
         verbose = false;
         age_res = 1; % [in years]
         sensitivity_analysis_wrapper(lambda, hbw_names, hbw_nms, peak_wavelengths, age_res, ...
-                                      light_sources_array, camera_sensitivity, camera_metadata, verbose)
+                                      light_sources_array, camera_sensitivity, camera_metadata, illumination_camera, verbose)
         
 end
 
