@@ -31,7 +31,8 @@ function densityModel_sensitivityAnalysis_v2020()
         % if you want to do these as photon fluxes
         model = 'FLIR-Blackfly-S-USB3';
         [camera_sensitivity, camera_metadata] = define_camera_spectral_sensitivity(model, lambda, false, true);
-    
+        ad
+        
     %% Sensitivity Analysis after initialization        
         verbose = false;
         age_res = 1; % [in years]
