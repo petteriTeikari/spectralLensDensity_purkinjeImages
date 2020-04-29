@@ -56,5 +56,5 @@ _The 60 year old template lens should have as large as 2 log unit compensation i
 
 ## TODO for more detailed simulation
 
-**See the [Wiki](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/wiki/Simulation-Literature-Review) for more details**, and some background ophthalmic optics theory.
+**See the [Wiki](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/wiki) for more details**, and some background ophthalmic optics theory.
 
