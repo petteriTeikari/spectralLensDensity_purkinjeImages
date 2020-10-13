@@ -40,7 +40,7 @@ Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_
 
 ## Illumination intensity compensation
 
-Run [plot_compensated_lights.m)](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/plot_compensated_lights.m) which will approximate how much you should boost short wavelengths even to detect the 4th Purkinje image on shorter wavelengths (See ["Illumination compensation
+Run [plot_compensated_lights.m](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/plot_compensated_lights.m) which will approximate how much you should boost short wavelengths even to detect the 4th Purkinje image on shorter wavelengths (See ["Illumination compensation
 " in Wiki](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/wiki/Simulation-Literature-Review) for rationale behind this plot)
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/illuminationCorrection_on_lensDensity_and_CameraSensitivity.png)
