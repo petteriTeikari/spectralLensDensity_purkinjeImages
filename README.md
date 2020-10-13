@@ -1,5 +1,7 @@
 # Measuring ocular media spectral transmittance using Purkinje Images
 
+Some extra simulations for the paper **"A Purkinje image-based system for an assessment of the density and transmittance spectra of the human crystalline lens in vivo"** _Taisuke Eto, Petteri Teikari, Raymond P Najjar, Yuki Nishimura, Yuki Motomura, Manami Kuze, Shigekazu Higuchi Scientific Reports volume 10, Article number: 16445 (2020)_ https://doi.org/10.1038/s41598-020-73541-y
+
 ## Dependendence of measured ocular media density and light source spectral power distribution (SPD)
 
 Quick'n'dirty approximation of the error in spectral ocular media density estimation using Purkinje images as a function of the (virtual) `age` (as specified by the [van de Kraats and van Norren 2007](https://doi.org/10.1364/JOSAA.24.001842) ocular media model, see [lensMediaWrapper.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/master/lensMediaWrapper.m) and [lensModel_vanDeKraats2007.m](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/blob/master/lensModel_vanDeKraats2007.m) for code), half-bandwidth (`hbw`) and peak wavelength (`lambda_peak`) of the used light source(s).
