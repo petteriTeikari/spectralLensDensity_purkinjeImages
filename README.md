@@ -47,9 +47,13 @@ Run [plot_compensated_lights.m](https://raw.githubusercontent.com/petteriTeikari
 
 _The 60 year old template lens should have as large as 2 log unit compensation if you would be using 400 nm peak wavelengths by simple transmittance attenuation analysis_
 
-## Camera Sensor Bit Depth simulaation
+## Camera Sensor Bit Depth simulation
 
 TODO! Simulate how does sensor bit depth affect your ability to compare lens density in practice. Is your 8-bit consumer camera sensor too quantized compared to 12/14/16-bit sensors? Could you do HDR in practice?
+
+## LED Driver Dimming Bit Depth simulation
+
+TODO! Similar to the effect of camera sensor bit depth. If you only have 8-bit PWM, you cannot do very nice intensity attenuation ratios, like you could do with better dimming ranges (e.g. [ISTL Quattro CC](https://www.ledsmagazine.com/company-newsfeed/article/16681974/ist-invents-led-and-oled-driver-with-worlds-widest-dimming-dynamic-range) or something that can use two DMX612 channels together for a 16-bit dimming range)
 
 
 ## Literature references
