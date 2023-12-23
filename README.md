@@ -41,11 +41,15 @@ Run [plot_lens_density.m](https://github.com/petteriTeikari/spectralLensDensity_
 ## Illumination intensity compensation
 
 Run [plot_compensated_lights.m](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/plot_compensated_lights.m) which will approximate how much you should boost short wavelengths even to detect the 4th Purkinje image on shorter wavelengths (See ["Illumination compensation
-" in Wiki](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/wiki/Simulation-Literature-Review) for rationale behind this plot)
+" in Wiki]([https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/wiki/Simulation-Literature-Review](https://github.com/petteriTeikari/spectralLensDensity_purkinjeImages/wiki#illumination-compensation)) for rationale behind this plot). In other words account for the sensor spectral sensitivity and compensate for the 25 yr old lens template.
 
 ![alt text](https://raw.githubusercontent.com/petteriTeikari/spectralLensDensity_purkinjeImages/master/figures/illuminationCorrection_on_lensDensity_and_CameraSensitivity.png)
 
 _The 60 year old template lens should have as large as 2 log unit compensation if you would be using 400 nm peak wavelengths by simple transmittance attenuation analysis_
+
+## Camera Sensor Bit Depth simulaation
+
+TODO! Simulate how does sensor bit depth affect your ability to compare lens density in practice. Is your 8-bit consumer camera sensor too quantized compared to 12/14/16-bit sensors? Could you do HDR in practice?
 
 
 ## Literature references
